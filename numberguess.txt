@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int number, guess, attempts = 0, max_attempts = 5;
+    int lower = 1, upper = 100;
+
+    // Seed the random number generator
+    srand(time(0));
+    number = (rand() % (upper - lower + 1)) + lower;
+
+    printf("Welcome to the Number Guessing Game!\n");
+    printf("I'm thinking of a number between %d and %d.\n", lower, upper);
+    printf("You have %d attempts to guess it.\n", max_attempts);
+
+    while (attempts < max_attempts) {
+        printf("Enter your guess: ");
+        scanf("%d", &guess);
+        attempts++;
+
+        if (guess < number) {
+            printf("Too low!\n");
+        } else if (guess > number) {
+            printf("Too high!\n");
+        } else {
+            printf("Congratulations! You guessed the number in %d attempts.\n", attempts);
+            break;
+        }
+    }
+
+    if (guess != number) {
+        printf("Sorry! You've used all %d attempts. The number was %d.\n", max_attempts, number);
+    }
+
+    printf("Thank you for playing!\n");
+
+    return 0;
+}
